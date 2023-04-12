@@ -12,7 +12,7 @@ Faça download do projeto utilizando o seguinte código:
 ```
 Entre no projeto kafka a partir do terminal:
 ```
-  cd kafka-3.4.0-src
+  cd NodeKafkaExample/kafka-3.4.0-src/
 ```
 Após execute o seguinte comando:
 ```
