@@ -8,11 +8,17 @@ isso é um exemplo de producer/ consumer em node.js, utilizando kafka
 # Uso
 Faça download do projeto utilizando o seguinte código:
 ```
-  git clone https://github.com/cleiton-Beal/NodeKafkaExample.git
+git clone https://github.com/cleiton-Beal/NodeKafkaExample.git
 ```
 Entre no projeto kafka a partir do terminal:
 ```
-  cd NodeKafkaExample/kafka-3.4.0-src/
+  cd NodeKafkaExample/
+```
+Extraia o arquivo do kafka
+após isso entre na pasta do extraida
+Logo após execute o seguinte comando:
+```
+./gradlew jar
 ```
 Após execute o seguinte comando:
 ```
