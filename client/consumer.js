@@ -4,7 +4,7 @@ const client = new kafka.KafkaClient({kafkaHost: 'localhost:9092'});
 
 const consumer = new Consumer(
     client,
-    [{ topic: 'meu-topico' }],
+    [{ topic: 'meu-topico1' }],
     {
         autoCommit: false
     }
