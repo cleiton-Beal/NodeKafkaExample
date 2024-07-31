@@ -1,24 +1,44 @@
-const kafka = require('kafka-node');
-const Producer = kafka.Producer;
-const client = new kafka.KafkaClient({kafkaHost: 'localhost:9092'});
-const producer = new Producer(client);
-client.setMaxListeners(2000); //
-producer.on('ready', function () {
-  console.log('Producer está pronto para enviar mensagens.');
+const { Kafka } = require('kafkajs');
 
-  const message = {
-    topic: 'meu-topico1',
-    messages: ['Testando se isso da certo','e não é que deu!']
-  };
-  for (let i = 0; i < 1000; i++) {
-    producer.send([message], function (err, result) {
-      console.log(err || result);
-      process.exit();
-    });
-  }
+// Configuração do cliente Kafka
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: ['localhost:9092'], // Ajuste conforme seu broker Kafka
 });
 
-producer.on('error', function (err) {
-  console.error('Erro ao iniciar o Producer:', err);
+// Criação do produtor
+const producer = kafka.producer();
+
+const run = async () => {
+  await producer.connect();
+  let message = {
+    urlBase: "hteste" ,
+    username: "teste" ,
+    password: "teste" ,
+    licensePlate: "MIQ2104" ,
+    hasExtension: false ,
+    codeKey: "teste de codeKey" ,
+    codeValue: "teste de codeValue" ,
+    hashApp: "" ,
+    infoApp: "teste de infoApp" ,
+  }
+
+  const messages = [
+    JSON.stringify(message),
+  ];
+
+  // Enviar mensagens para o tópico
+  const result = await producer.send({
+    topic: 'teste-lulu',
+    messages: messages.map(message => ({ value: message }))
+  });
+
+  console.log('Mensagens enviadas:', result);
+
+  await producer.disconnect();
+};
+
+run().catch(e => {
+  console.error('Erro ao enviar mensagens:', e);
   process.exit(1);
 });
